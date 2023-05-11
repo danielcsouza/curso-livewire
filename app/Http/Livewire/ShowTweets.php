@@ -16,7 +16,7 @@ class ShowTweets extends Component
 
     public function render()
     {
-        $tweets = Tweet::with('user')->paginate(2); // evita o n+1
+        $tweets = Tweet::with('user')->latest()->paginate(5); // evita o n+1
         //$tweets = Tweet::get(); // jeito errado de fazer com relação a performance
         return view('livewire.show-tweets', compact('tweets'));
     }
@@ -27,9 +27,7 @@ class ShowTweets extends Component
         // dd($this->message);
 
         $this->validate();
-
-        Tweet::create([
-            'user_id' => 1,
+        auth()->user()->tweets()->create([
             'content' => $this->content
         ]);
 
