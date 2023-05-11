@@ -9,7 +9,7 @@ use Livewire\WithPagination;
 class ShowTweets extends Component
 {
     use WithPagination;
-    public string $content = "Apenas um teste";
+    public string $content = "";
     protected $rules = [
         'content' => 'required|min:3|max:255'
     ];
@@ -33,5 +33,18 @@ class ShowTweets extends Component
 
         $this->content = '';
 
+    }
+
+    public function like($tweetId)
+    {
+        $tweet = Tweet::find($tweetId);
+        $tweet->likes()->create([
+            'user_id' => auth()->user()->id
+        ]);
+    }
+
+    public function deslike(Tweet $tweet)
+    {
+        $tweet->likes()->delete();
     }
 }
