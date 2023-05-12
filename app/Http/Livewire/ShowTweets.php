@@ -43,6 +43,11 @@ class ShowTweets extends Component
 
     public function like($tweetId)
     {
+        if (!Auth::check())
+        {
+            return redirect()->route('login');
+        }
+
         $tweet = Tweet::find($tweetId);
         $tweet->likes()->create([
             'user_id' => auth()->user()->id
@@ -51,6 +56,11 @@ class ShowTweets extends Component
 
     public function deslike(Tweet $tweet)
     {
+        if (!Auth::check())
+        {
+            return redirect()->route('login');
+        }
+
         $tweet->likes()->delete();
     }
 }
