@@ -42,7 +42,10 @@
                 <x-button class="ml-4">
                     {{ __('Log in') }}
                 </x-button>
+
             </div>
+            <br>
+            <a href="{{route('register')}}">Don't have account?</a>
         </form>
     </x-authentication-card>
 </x-guest-layout>

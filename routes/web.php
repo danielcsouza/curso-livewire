@@ -8,10 +8,8 @@ use App\Http\Livewire\{
 };
 
 Route::get('/upload',UploadPhoto::class)->name('upload.photo.user')->middleware('auth');
-Route::get('/tweets', ShowTweets::class)->name('tweets.home')->middleware('auth');
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', ShowTweets::class)->name('tweets.home');
+//->middleware('auth');
 
 Route::middleware(['auth:sanctum', config('jetstream.auth_session'),'verified'])
     ->group(function () {

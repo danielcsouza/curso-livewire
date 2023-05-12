@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Tweet;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -25,6 +26,11 @@ class ShowTweets extends Component
     public function create()
     {
         // dd($this->message);
+
+        if (!Auth::check())
+        {
+            return redirect()->route('login');
+        }
 
         $this->validate();
         auth()->user()->tweets()->create([
