@@ -12,7 +12,12 @@ class ShowTweets extends Component
     use WithPagination;
     public string $content = "";
     protected $rules = [
-        'content' => 'required|min:3|max:255'
+        'content' => 'required|min:3|max:140'
+    ];
+    protected $messages = [
+        'content.required' => 'O campo de tweet é obrigatório',
+        'content.min' => 'O campo de tweet precisa ter no mínimo 3 caracteres',
+        'content.max' => 'O campo de tweet precisa ter no máximo 255 caracteres'
     ];
 
     public function render()

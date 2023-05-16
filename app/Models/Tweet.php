@@ -27,4 +27,10 @@ class Tweet extends Model
                 });
             // ->withLikedBy();
     }
+
+    public function totalLikes()
+    {
+        return Like::where('tweet_id', $this->id)->count();
+    }
+
 }
