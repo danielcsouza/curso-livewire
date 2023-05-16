@@ -8,6 +8,8 @@
     </x-slot>
 
     <x-slot name="form">
+        <a href="{{route('upload.photo.user')}}" class="text-sm text-gray-700 underline">Adicionar foto</a>
+
         <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
             <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
